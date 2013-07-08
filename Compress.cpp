@@ -1,11 +1,15 @@
 #include <windows.h>
 #include <dir.h>
-#include "print2d.h"
 
 /* Author: David Bourgin, 1995 */
 
 #define DBITLEN        16              // Max. dictionary size is 2**DBITLEN
 #define NBITS          8               // We deal with bytes, aren't we?
+
+typedef unsigned short ushort;
+typedef unsigned int uint;
+typedef unsigned char uchar;
+typedef unsigned long ulong;
 
 typedef struct t_centry {              // Entry in encoding dictionary
   ushort         character;

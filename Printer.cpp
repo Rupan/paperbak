@@ -561,9 +561,9 @@ static void Initializeprinting(t_printdata *print) {
         ANSI_CHARSET,OUT_TT_PRECIS,CLIP_DEFAULT_PRECIS,
         PROOF_QUALITY,FF_SWISS,NULL);
       if (print->hfont6==NULL)
-        print->hfont6=GetStockObject(SYSTEM_FONT);
+        print->hfont6=(HFONT *)GetStockObject(SYSTEM_FONT);
       if (print->hfont10==NULL)
-        print->hfont10=GetStockObject(SYSTEM_FONT);
+        print->hfont10=(HFONT *)GetStockObject(SYSTEM_FONT);
       // Set text color (gray) and alignment (centered).
       SetTextColor(print->dc,RGB(128,128,128));
       SetTextAlign(print->dc,TA_TOP|TA_CENTER);

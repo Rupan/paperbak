@@ -297,7 +297,7 @@ HWND Createprogressbar(RECT *rc) {
   wc.hInstance=hinst;
   wc.hIcon=NULL;
   wc.hCursor=LoadCursor(NULL,IDC_ARROW);
-  wc.hbrBackground=GetStockObject(WHITE_BRUSH);
+  wc.hbrBackground=(HBRUSH *)GetStockObject(WHITE_BRUSH);
   wc.lpszMenuName=NULL;
   wc.lpszClassName=PROGRESSCLASS;
   if (!RegisterClass(&wc))
@@ -445,7 +445,7 @@ LRESULT CALLBACK Displaywp(HWND hw,UINT msg,WPARAM wp,LPARAM lp) {
       if (displaymode==DISP_QUALITY && qualitymap!=NULL && mapnx>0 && mapny>0) {
         // Draw quality map.
         FillRect(dc,&rc,graybrush);
-        FillRect(dc,&maprect,GetStockObject(WHITE_BRUSH));
+        FillRect(dc,&maprect,(HBRUSH *)GetStockObject(WHITE_BRUSH));
         rc.bottom=maprect.top;
         for (j=0; j<mapny; j++) {
           rc.top=rc.bottom; rc.bottom+=mapscale;
@@ -662,7 +662,7 @@ HWND Createdisplay(RECT *rc) {
   // allowed by implemented version of ECC): red; unrecoverable blocks: black.
   for (i=0; i<17; i++)
     htone[i]=CreateSolidBrush(RGB(119+8*i,119+8*(16-i),64));
-  hbad=GetStockObject(BLACK_BRUSH);
+  hbad=(HBRUSH *)GetStockObject(BLACK_BRUSH);
   // Set default display parameters.
   displaymode=DISP_QUALITY;
   mapnx=mapny=0;
@@ -1356,7 +1356,7 @@ int Createcontrols(void) {
     CLIP_DEFAULT_PRECIS,PROOF_QUALITY,
     DEFAULT_PITCH|FF_SWISS|0x04,NULL);
   if (hfont20==NULL)                   // Emergency action
-    hfont20=GetStockObject(SYSTEM_FIXED_FONT);
+    hfont20=(HFONT *)GetStockObject(SYSTEM_FIXED_FONT);
   dcmain=GetDC(hwmain);
   if (GetTextExtentPoint32(dcmain,"Wgf_A",5,&extent)==0)
     font20height=20;
