@@ -1,0 +1,336 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="content-type"
+ content="text/html; charset=ISO-8859-1">
+  <title>PaperBack</title>
+  <meta name="author" content="Olly">
+</head>
+<body>
+<span style="font-style: italic;">Olly, the author of <a
+ href="http://www.ollydbg.de">OllyDbg</a>, presents his new open source
+joke:</span><big><br>
+<br>
+<big>PAPERBACK v1.00</big></big><br>
+<br>
+<a href="PaperBak.exe" style="color: rgb(204, 0, 0); font-weight: bold;">Download
+PaperBack</a><br style="color: rgb(204, 0, 0); font-weight: bold;">
+<a href="Paperbak.zip" style="color: rgb(204, 0, 0); font-weight: bold;">Download
+sources</a><br style="color: rgb(204, 0, 0); font-weight: bold;">
+<a href="gpl.txt" style="color: rgb(204, 0, 0); font-weight: bold;">Read
+GNU GPL</a><br>
+<br>
+<hr style="width: 100%; height: 2px;"><br>
+<a href="#1"><span style="font-weight: bold;">1. What is PaperBack?</span></a><br>
+<a href="#2"><span style="font-weight: bold;">2. Installation.</span></a><br>
+<a href="#3"><span style="font-weight: bold;">3. Setup.</span></a><br>
+<a href="#4"><span style="font-weight: bold;">4. Printing data to paper.</span></a><br>
+<a href="#5"><span style="font-weight: bold;">5. Data restoration.</span></a><br
+ style="font-weight: bold;">
+<span style="font-weight: bold;"><a href="#6">6. History.</a><br>
+</span><span style="font-weight: bold;"><a href="#7">7. Patents and IP.</a><br>
+<a href="#8">8. Acknowledgements.</a></span><br>
+<a href="#9"><span style="font-weight: bold;">9. Source code
+description.</span></a><br>
+<br>
+<a name="1"></a><br>
+<span style="font-weight: bold;">1. What is PaperBack?</span><br>
+<br>
+PaperBack is a free application that allows you to back up your
+precious files on the ordinary paper in the form of the oversized
+bitmaps. If you have a good laser printer with the 600 dpi resolution,
+you can save up to 500,000 bytes of uncompressed data on the single
+A4/Letter sheet. Integrated packer allows for much better data density
+- up to 3,000,000+ (<span style="font-weight: bold;">three megabytes</span>)
+of C code per page.<br>
+<br>
+You may ask - why? Why, for heaven's sake, do I need to make paper
+backups, if there are so many alternative possibilities like CD-R's,
+DVD&plusmn;R's, memory sticks, flash cards, hard disks, streamer tapes,
+ZIP drives, network storages, magnetooptical cartridges, and even
+8-inch double-sided floppy disks formatted for DEC PDP-11? (I still
+have some). The answer is simple: you don't. However, by looking on CD
+or magnetic tape, you are not able to tell whether your data is
+readable or not. You must insert your medium into the drive (if you
+have one!) and try to read it.<br>
+<br>
+Paper is different. Do you remember the punched cards? EBCDIC and all
+this stuff. For years, cards were the main storage medium for the
+source code. I agree that 100K+ programs were... <span
+ style="font-style: italic;">unhandly</span>, but hey, only real
+programmers dared to write applications of <span
+ style="font-style: italic;">this</span> size. And used cards were good
+as notepads, too. Punched tapes were also common. And even the most
+weird codings, like CDC or EBCDIC, were readable by humans (I mean, by
+real programmers).<br>
+<br>
+Of course, bitmaps produced by PaperBack are also human-readable (with
+the small help of any decent microscope). I'm joking. What you need is
+a scanner attached to PC. Actual version is for Windows only, but it's
+free and open source, and there is nothing that prevents you from
+porting PaperBack to Linux or Mac, and the chances are good that it
+still will work under Windows XXXP or Trillenium Edition. And, of
+course, you can mail your printouts to the recipients anywhere in the
+world, even if they have no Internet access or live in the countries
+where such access is restricted by the regiment.<br>
+<br>
+Oh yes, a scanner. For 600 dpi printer you will need a scanner with at
+least 900 dpi physical (let me emphasize, <span
+ style="font-style: italic;">physical</span>, not <span
+ style="font-style: italic;">interpolated</span>) resolution.<br>
+<br>
+Have I already mentioned that PaperBack is free? I release it under the
+GNU General Public License, version 3. This means that you pay nothing
+for the program, that the sources are freely available, and that you
+are allowed - in fact, encouraged - to modify and improve this
+application.<br>
+<br>
+<a name="2"></a><br>
+<span style="font-weight: bold;">2. Installation.</span><br>
+<br>
+You don't need to install PaperBack. Copy it to any directory, if
+possible, with unrestricted write access (to allow PaperBack to save
+settings to the initialization file), optionally create shortcut on the
+desktop - that's all.<br>
+<br>
+<a name="3"></a><br>
+<span style="font-weight: bold;">3. Setup.</span><br>
+<br>
+This is how Options dialog looks:<br>
+<br>
+<div style="text-align: center;"><img src="options.gif" title=""
+ alt="Options dialog" style="width: 389px; height: 253px;"><br>
+<br>
+</div>
+<br>
+The most important setting is the <span style="font-weight: bold;">dot
+density</span>. It determines the size of the data bit on the paper and
+must be at least two times lower than the physical resolution of your
+printer. For example, if you are the (moderately) happy owner of the HP
+LaserJet V with 600 dpi resolution, set density to 300 dpi. This allows
+you to draw 300x300=90,000 dots, or slightly less than 6 k bytes of
+useful data on every square inch of the paper. <br>
+<br>
+Jet printers are not as good as laser. Maximal useful resolution is
+typically limited to 200 dpi. Please select the best available quality,
+and don't forget to align the printing nozzles, so that points printed
+from left to right coincide with those printed from right to left. <br>
+<br>
+Dots must be clearly distinguishable from each other. Usually this
+means that they must be separated by some anount of white space,
+determined by the parameter <span style="font-weight: bold;">dot size</span>.
+70% is usually the best option.<br>
+<br style="font-weight: bold;">
+<span style="font-weight: bold;">Compression</span> is always good,
+because it reduces the size of the bitmap, unless your file is already
+packed. Use fast compression if your computer is really, really slow,
+and maximal compression in all other cases. <br>
+<br>
+<span style="font-weight: bold;">Redundancy</span> helps to recover
+partially damaged data. Redundancy 1:5 means that for every 5
+consecutive data blocks, if one block is completely unreadable,
+PaperBack will be able to restore it. To reduce damages caused by
+coffee pots and other common dangers, blocks are distributed around the
+page. Higher redundancy decreases page capacity but improves
+reliability.<br>
+<br>
+<span style="font-weight: bold;">Header and footer</span> asks
+PaperBack to print useful information about the file, like file name,
+its size, date of last modification, page and recommended scanner
+settings. This parameter influences only the printing and has no
+influence on the reading of the data. Border around the page improves
+autocropping with the not-so-smart TWAIN drivers.<br>
+<br>
+Large files will be printed on several pages. When last page is scanned
+(order is not important) and <span style="font-weight: bold;">autosave</span>
+option is activated, PaperBack will ask you to select location where
+restored file will be saved. If this option is unchecked, you must
+press Save button when recognition is finished - convenient if your
+scanner has automatical feeder and you scan several backups (up to 5)
+at once.<br>
+<br>
+PaperBack uses Highly Sophisticated Unbelievably Advanced Error
+Correction Techniques (in fact, Reed-Solomon ECC) to restore unreadable
+pixels. Therefore, if data is halfway readable, it will accept it, even
+if recognition parameters are very far from optimal. This accelerates
+processing but leads to the high amount of bad blocks reported by the
+program. When you backup important data and verify it afterwards, this
+may lead to false assumption that data is unreliable. But activate <span
+ style="font-weight: bold;">Determine best quality</span>, and
+PaperBack will report the real data quality. Of course, this costs time.<br>
+<br>
+Two last options set data encryption (FIPS-197 compliant AES is not
+easy to crack) and whether password is displayed as the readable text
+while you type it in, or the characters are replaced by asterisks. Of
+course, this option does <span style="font-style: italic;">not</span>
+mean that password will be printed on the paper!<br>
+<br>
+<a name="4"></a><br>
+<span style="font-weight: bold;">4. Printing data to paper.</span><br>
+<br>
+First, set page size and printer options. They may differ from one
+driver to another, so I will not discuss them here in details. Always
+select the best available printing quality. Turn off halftoning,
+dithering and image optimization. Don't forget to align nozzles on jet
+printers; if possible, turn off bidirectional printing. Note that only
+basic printer options are saved between the sessions, and you may need
+to re-enter them again.<br>
+<br>
+After options are set, you can print your data. Current PaperBack
+version is 1.00, and it can't backup folders - only the single files,
+at most one per page. This is the very substantial drawback for the
+backup program. If you are going to save many small files, better first
+pack them into the single archive using WinZip, tar or similar program.
+<br>
+<br>
+PaperBack supports drag-and-drop. If file has extention other than <span
+ style="font-style: italic;">.bmp</span>, it will be printed. Default
+action for bitmaps is the recognition. To&nbsp; backup them, use Print
+button. You can drop several files at once; internal queue is limited
+to 128 entries. Again, each file will be printed on the separate
+sheet(s) of paper.<br>
+<br>
+For test purposes, you can save bitmaps to the disk. This option is
+selectable from the main menu.<br>
+<br>
+<a name="5"></a><br>
+<span style="font-weight: bold;">5. Data restoration.</span><br
+ style="font-weight: bold;">
+<br>
+PaperBack should support any scanner with TWAIN interface. It also
+accepts uncompressed grayscale and RGB bitmaps with 8 or 24 bits per
+pixel. You can drag-and-drop files with extention <span
+ style="font-style: italic;">.bmp</span> directly into the PaperBack.<br>
+<br>
+If you use scanner, select scanning source from the main menu, then
+press Scan button. Optimal resolution is about 3 times the dot density.
+B/W scans are usually unreadable, always select grayscale image. Color
+scanning is also acceptable, but has no advantages except for 3-fold
+memory use. (Another joke). Memory requirements are relatively high. A4
+grayscale bitmap with 900 dpi resolution requires around 80 MB.<br>
+<br>
+Turn off all image optimizations, like sharpening - PaperBack uses its
+own optimization techniques better suitable for this particular case.<br>
+<br>
+Grid should be more or less parallel to the sides of the scanner
+(maximal angle must not exceed &plusmn;7&deg;), but general orientation
+is unimportant: portrait, landscape, upside down or even, if you use
+transparencies, flipped. Orientation may change from one paper sheet to
+another. <br>
+<br>
+You can scan up to 5 backups simultaneously. Each file will be placed
+into the separate tab. If backup consists of several pages, the order
+in which they are scanned is absolutely unimportant. Bottom line in the
+tab displays list of unscanned or incomplete pages. If some page is
+unreadable, change its placement, resolution and/or brightness and
+contrast.<br>
+<br>
+Quality map to the right shows distribution of errors on the last
+scanned page as a gradations of colours. Good blocks are green. The
+higher the number of erroneous bytes, the more reddish is the colour.
+Undeciphereble blocks with more than 16 invalid bytes are black. If
+block is white, PaperBack was unable to recognize the grid. Doubleclick
+map to display the block as a grayscale image (optionally with marked
+errors).<br>
+<br>
+After all pages are scanned, press on Save to write restored file to
+the disk. If backup is encrypted, you will be asked to enter the
+password.<br>
+<br>
+<a name="6"></a><br>
+<span style="font-weight: bold;">6. History.</span><br>
+<br>
+Once upon a time, my oldest son (he was 15 then) asked me: "Dad, how
+the huge amounts of data are saved on the small CD?" A brief
+explanation from my side followed, I took a very sharp pencil and tried
+to draw as small points and lines as possible, in order to emphasize
+how dense the data is. Then my son asked: "How much data can you place
+this way on the single sheet of paper?" My estimation was in the order
+of 100 K. "Can we make a try?" It took me four or five days to make the
+proof of concept, and another two weeks to integrate packer, encryption
+and user interface. Then I lost the interest and put the whole project
+into the darkest corner of the deepest directory on my hard disk. (One
+more joke). But why keep potentially useful code to myself? So now I am
+releasing it under GPL 3.<br>
+<br>
+<a name="7"></a><br>
+<span style="font-weight: bold;">7. Patents and IP.</span><br>
+<br>
+PaperBack is a "clean-room" implementation. I assure that my part of
+code is written by myself alone and is not based on any 3-rd party work.<br>
+<br>
+However, I can't guarantee that this program doesn't infringe any
+patents, trade marks or other stuff that makes lawyers rich. If you are
+going to use PaperBack, all the burden of proof is
+on your side. <br>
+<br>
+To make lawyers (un)happy:<br>
+<br>
+<div style="margin-left: 40px;"><span style="font-family: monospace;">Paperback
+is free software; you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free
+Software Foundation; either version 3 of the License, or (at your
+option) any later version.</span><br style="font-family: monospace;">
+<br style="font-family: monospace;">
+<span style="font-family: monospace;">PaperBack is distributed in the
+hope that it will be useful, but WITHOUT ANY WARRANTY; without even the
+implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+PURPOSE. See the </span><a href="gpl.txt"
+ style="font-family: monospace;">GNU General Public License</a><span
+ style="font-family: monospace;"> for more details.</span><br
+ style="font-family: monospace;">
+<br style="font-family: monospace;">
+<span style="font-family: monospace;">You should have received a copy
+of the GNU General Public License along with this program. If not, see </span><a
+ href="http://www.gnu.org/licenses/" style="font-family: monospace;">http://www.gnu.org/licenses/</a><br
+ style="font-family: monospace;">
+</div>
+<br>
+<a name="8"></a><br>
+<span style="font-weight: bold;">8. Acknowledgements.</span><br
+ style="font-weight: bold;">
+<br>
+PaperBack would be not possible without the Reed-Solomon error
+correction. The code is written by Phil Karn (C) 2002. Phil allows use
+of his code under the terms of GPL.<br>
+<br>
+AES encryption code is developed by Christophe Devine (C) 2001-2004.
+This code is also released under GPL.<br>
+<br>
+bzip2 compression engine is developed by Julian R. Seward (C)
+1996-2005. See sources for details. To my best knowledge (IANAL), his
+license is compatible with GPL.<br>
+<br>
+<a name="9"></a><br>
+<span style="font-weight: bold;">9. Source code description.</span><br>
+<br>
+There is currently none, but the sources are commented. If you need
+help, read comments. If you still need help, ask your friends. For more
+help, visit some discussion forum. If you are completely despaired,
+create your own forum. If you are ready to commit suicide, well, drop
+me a mail (<span style="font-weight: bold;">ollydbg</span> <span
+ style="color: rgb(102, 0, 0);">at</span> <span
+ style="font-weight: bold;">t-online</span> <span
+ style="font-weight: bold;">de</span>). Set subject to <span
+ style="font-weight: bold;">PaperBack</span>, or you will be considered
+spam and filtered out. Allow 4 to 6 weeks for delivery.<br>
+<br>
+<hr style="width: 100%; height: 2px;"><br>
+<div style="text-align: center;">Visitors so far: <a
+ href="http://www.euserv.de?ref=counter" target="_blank"> <img
+ src="http://cgiscripts.kundencontroller.de/cnt2/?web_id=29QsM0OZCS"
+ title="Hosted by EUserv" style="border: medium none ;"
+ alt="Counter hostet by EUserv">
+</a><br>
+</div>
+<br>
+<small>This site is Copyright (C) 2007 Oleh Yuschuk, <span
+ style="font-weight: bold;">ollydbg</span> <span
+ style="color: rgb(102, 0, 0);">at</span> <span
+ style="font-weight: bold;">t-online</span> <span
+ style="font-weight: bold;">de</span>. You are allowed to cite and
+mirror it in whole or in parts, provided that you always refer to the
+original source.</small><br>
+<br>
+</body>
+</html>
