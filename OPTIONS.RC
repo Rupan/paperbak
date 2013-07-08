@@ -1,0 +1,42 @@
+/****************************************************************************
+
+
+options.rc
+
+produced by Borland Resource Workshop
+
+
+*****************************************************************************/
+
+#define DIALOG_1	1
+#define IDC_COMBOBOX1	101
+#define IDC_COMBOBOX2	106
+#define IDC_CHECKBOX2	107
+#define IDC_CHECKBOX3	108
+#define IDC_CHECKBOX1	102
+#define IDC_RADIOBUTTON1	103
+#define IDC_RADIOBUTTON2	104
+#define IDC_RADIOBUTTON3	105
+DIALOG_1 DIALOG 15, 35, 262, 140
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Options"
+FONT 8, "MS Sans Serif"
+{
+ LTEXT "Printing options", -1, 6, 6, 60, 9
+ CONTROL "", -1, "static", SS_BLACKFRAME | WS_CHILD | WS_VISIBLE, 6, 18, 123, 93
+ LTEXT "Dot density", -1, 12, 27, 42, 9
+ COMBOBOX IDC_COMBOBOX1, 57, 24, 39, 114, CBS_DROPDOWN | WS_TABSTOP
+ LTEXT "dots/in", -1, 99, 27, 27, 9
+ LTEXT "Compression", -1, 12, 42, 45, 9
+ CONTROL "None", IDC_RADIOBUTTON1, "BUTTON", BS_AUTORADIOBUTTON, 60, 42, 36, 9
+ CONTROL "Fast", IDC_RADIOBUTTON2, "BUTTON", BS_AUTORADIOBUTTON, 60, 54, 36, 9
+ CONTROL "Best", IDC_RADIOBUTTON3, "BUTTON", BS_AUTORADIOBUTTON, 60, 66, 36, 9
+ LTEXT "Redundancy", -1, 12, 81, 45, 9
+ COMBOBOX IDC_COMBOBOX2, 57, 78, 39, 72, CBS_DROPDOWN | WS_TABSTOP
+ CHECKBOX "Encrypt data", IDC_CHECKBOX1, 12, 93, 60, 12, BS_AUTOCHECKBOX | WS_DISABLED | WS_TABSTOP
+ LTEXT "Decoding options", -1, 132, 6, 60, 9
+ CONTROL "", -1, "static", SS_BLACKFRAME | WS_CHILD | WS_VISIBLE, 132, 18, 123, 93
+ CHECKBOX "Autosave complete files", IDC_CHECKBOX2, 138, 24, 90, 12, BS_AUTOCHECKBOX | WS_TABSTOP
+ CHECKBOX "Determine best quality", IDC_CHECKBOX3, 138, 39, 90, 12, BS_AUTOCHECKBOX | WS_TABSTOP
+ DEFPUSHBUTTON "OK", IDOK, 106, 120, 50, 14
+}

@@ -1,0 +1,186 @@
+////////////////////////////////////////////////////////////////////////////////
+//                                                                            //
+// PaperBack -- high density backups on the plain paper                       //
+//                                                                            //
+// Copyright (c) 2007 Oleh Yuschuk                                            //
+// ollydbg at t-online de (set Subject to 'paperback' or be filtered out!)    //
+//                                                                            //
+//                                                                            //
+// This file is part of PaperBack.                                            //
+//                                                                            //
+// Paperback is free software; you can redistribute it and/or modify it under //
+// the terms of the GNU General Public License as published by the Free       //
+// Software Foundation; either version 3 of the License, or (at your option)  //
+// any later version.                                                         //
+//                                                                            //
+// PaperBack is distributed in the hope that it will be useful, but WITHOUT   //
+// ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or      //
+// FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for   //
+// more details.                                                              //
+//                                                                            //
+// You should have received a copy of the GNU General Public License along    //
+// with this program. If not, see <http://www.gnu.org/licenses/>.             //
+//                                                                            //
+//                                                                            //
+// Note that bzip2 compression/decompression library, which is the part of    //
+// this project, is covered by different license, which, in my opinion, is    //
+// compatible with GPL.                                                       //
+//                                                                            //
+////////////////////////////////////////////////////////////////////////////////
+
+#include "resource.h"
+
+ICON_MAIN ICON
+{
+ '00 00 01 00 02 00 20 20 10 00 00 00 00 00 E8 02'
+ '00 00 26 00 00 00 10 10 10 00 00 00 00 00 28 01'
+ '00 00 0E 03 00 00 28 00 00 00 20 00 00 00 40 00'
+ '00 00 01 00 04 00 00 00 00 00 80 02 00 00 00 00'
+ '00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00'
+ '00 00 00 00 80 00 00 80 00 00 00 80 80 00 80 00'
+ '00 00 80 00 80 00 80 80 00 00 80 80 80 00 C0 C0'
+ 'C0 00 00 00 FF 00 00 FF 00 00 00 FF FF 00 FF 00'
+ '00 00 FF 00 FF 00 FF FF 00 00 FF FF FF 00 00 00'
+ '00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00'
+ '00 FF FF FF FF FF FF FF FF FF FF 00 00 00 00 00'
+ '00 FF 0F 0F 0F 0F 0F 0F 0F 0F 0F 00 00 00 00 00'
+ '00 FF FF FF FF FF FF FF FF FF FF 00 00 00 00 00'
+ '00 FF 0F 0F 0F 0F 0F 0F 0F 0F 0F 00 00 00 00 00'
+ '00 FF FF FF FF FF FF FF FF FF FF 00 00 00 00 00'
+ '00 FF 0F 0F 0F 0F 0F 0F 0F 0F 0F 00 00 00 00 00'
+ '00 FF FF FF FF FF FF FF FF FF FF 00 00 00 00 00'
+ '00 FF 0F 0F 0F 0F 0F 0F 0F 0F 0F 00 00 00 00 00'
+ '00 FF FF FF FF FF FF FF FF FF FF 00 00 00 00 00'
+ '00 FF 0F 0F 0F 0F 0F 0F 0F 0F 0F 00 00 00 00 00'
+ '00 FF FF FF FF FF FF FF FF FF FF 00 00 00 00 00'
+ '00 FF 0F 0F 0F 0F 0F 0F 0F 0F 0F 00 00 00 00 00'
+ '00 FF FF FF FF FF FF FF FF FF FF 00 00 00 00 00'
+ '00 FF 0F 0F 0F 0F 0F 0F 0F 0F 0F 00 00 00 00 00'
+ '00 FF FF FF FF FF FF FF FF FF FF 00 00 00 00 00'
+ '00 FF 0F 0F 0F 0F 0F 0F 0F 0F 0F 00 00 00 00 00'
+ '00 FF FF FF FF FF FF FF FF FF FF 00 00 00 00 00'
+ '00 FF 0F 0F 0F 0F 0F 0F 0F 0F 0F 00 00 00 00 00'
+ '00 FF FF FF FF FF FF FF FF FF FF 00 00 00 00 00'
+ '00 FF 0F 0F 0F 0F 0F 0F 0F 0F 0F 00 00 00 00 00'
+ '00 FF FF FF FF FF FF FF FF FF FF 00 00 00 00 00'
+ '00 FF 0F 0F 0F 0F 0F 0F 0F 0F 0F 00 00 00 00 00'
+ '00 FF FF FF FF FF FF FF FF FF FF 00 00 00 00 00'
+ '00 FF 0F 0F 0F 0F 0F 00 00 00 00 00 00 00 00 00'
+ '00 FF FF FF FF FF FF F0 FF FF F0 00 00 00 00 00'
+ '00 FF 0F 0F 0F 0F 0F 00 FF FF 00 00 00 00 00 00'
+ '00 FF FF FF FF FF FF F0 FF F0 00 00 00 00 00 00'
+ '00 FF 0F 0F 0F 0F 0F 00 FF 00 00 00 00 00 00 00'
+ '00 FF FF FF FF FF FF F0 F0 00 00 00 00 00 00 00'
+ '00 FF FF FF FF FF FF F0 00 00 00 00 00 00 00 00'
+ '00 00 00 00 00 00 00 00 00 00 00 00 00 00 F8 00'
+ '00 1F F8 00 00 1F F8 00 00 1F F8 00 00 1F F8 00'
+ '00 1F F8 00 00 1F F8 00 00 1F F8 00 00 1F F8 00'
+ '00 1F F8 00 00 1F F8 00 00 1F F8 00 00 1F F8 00'
+ '00 1F F8 00 00 1F F8 00 00 1F F8 00 00 1F F8 00'
+ '00 1F F8 00 00 1F F8 00 00 1F F8 00 00 1F F8 00'
+ '00 1F F8 00 00 1F F8 00 00 1F F8 00 00 1F F8 00'
+ '00 1F F8 00 00 3F F8 00 00 7F F8 00 00 FF F8 00'
+ '01 FF F8 00 03 FF F8 00 07 FF F8 00 0F FF 28 00'
+ '00 00 10 00 00 00 20 00 00 00 01 00 04 00 00 00'
+ '00 00 C0 00 00 00 00 00 00 00 00 00 00 00 00 00'
+ '00 00 00 00 00 00 00 00 00 00 00 00 80 00 00 80'
+ '00 00 00 80 80 00 80 00 00 00 80 00 80 00 80 80'
+ '00 00 80 80 80 00 C0 C0 C0 00 00 00 FF 00 00 FF'
+ '00 00 00 FF FF 00 FF 00 00 00 FF 00 FF 00 FF FF'
+ '00 00 FF FF FF 00 00 00 00 00 00 00 00 00 00 0F'
+ 'FF FF FF FF F0 00 00 0F F0 F0 F0 F0 F0 00 00 0F'
+ 'FF FF FF FF F0 00 00 0F F0 F0 F0 F0 F0 00 00 0F'
+ 'FF FF FF FF F0 00 00 0F F0 F0 F0 F0 F0 00 00 0F'
+ 'FF FF FF FF F0 00 00 0F F0 F0 F0 F0 F0 00 00 0F'
+ 'FF FF FF FF F0 00 00 0F F0 F0 F0 F0 F0 00 00 0F'
+ 'FF FF F0 00 00 00 00 0F F0 F0 F0 FF 00 00 00 0F'
+ 'FF FF F0 F0 00 00 00 0F FF FF F0 00 00 00 00 00'
+ '00 00 00 00 00 00 C0 03 00 00 C0 03 00 00 C0 03'
+ '00 00 C0 03 00 00 C0 03 00 00 C0 03 00 00 C0 03'
+ '00 00 C0 03 00 00 C0 03 00 00 C0 03 00 00 C0 03'
+ '00 00 C0 03 00 00 C0 07 00 00 C0 0F 00 00 C0 1F'
+ '00 00 C0 3F 00 00'
+}
+
+MENU_MAIN MENU
+{
+ POPUP "&File"
+ {
+  MENUITEM "&Open bitmap",M_FILE_OPEN
+  MENUITEM "Save to bitmap",M_FILE_SAVEBMP
+  MENUITEM SEPARATOR
+  MENUITEM "&Select source", M_FILE_SELECT
+  MENUITEM "&Acquire", M_FILE_ACQUIRE
+  MENUITEM SEPARATOR
+  MENUITEM "Page se&tup", M_FILE_PAGE
+  MENUITEM "&Print", M_FILE_PRINT
+  MENUITEM SEPARATOR
+  MENUITEM "&Exit\tAlt+X", M_FILE_EXIT
+ }
+ POPUP "&Help"
+ {
+  MENUITEM "&About", M_HELP_ABOUT
+ }
+}
+
+
+DIALOG_ABOUT DIALOG 32, 32, 200, 169
+STYLE   WS_VISIBLE | WS_CLIPSIBLINGS | DS_3DLOOK
+CAPTION "About Paper Backup"
+FONT 8, "MS Sans Serif"
+{
+ LTEXT "Text", ABOUT_TEXT, 5, 5, 190, 140, WS_BORDER | SS_CENTER
+ DEFPUSHBUTTON "OK", ABOUT_OK, 75, 150, 50, 14
+}
+
+
+DIALOG_OPTIONS DIALOG 32, 32, 255, 140
+STYLE   DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU | DS_3DLOOK
+CAPTION "Options"
+FONT 8, "MS Sans Serif"
+{
+ GROUPBOX "Printing", -1, 6, 6, 118, 128, BS_GROUPBOX | WS_GROUP
+ LTEXT "Dot density", -1, 16, 22, 42, 9
+ COMBOBOX OPT_DENSITY, 64, 20, 49, 114, CBS_DROPDOWNLIST | WS_TABSTOP
+ LTEXT "Dot size", -1, 16, 41, 42, 9
+ COMBOBOX OPT_DOTSIZE, 64, 39, 49, 114, CBS_DROPDOWNLIST | WS_TABSTOP
+ LTEXT "Compression", -1, 16, 60, 42, 9
+ COMBOBOX OPT_COMPRESS, 64, 58, 49, 114, CBS_DROPDOWNLIST | WS_TABSTOP
+ LTEXT "Redundancy", -1, 16, 79, 42, 9
+ COMBOBOX OPT_REDUND, 64, 77, 49, 114, CBS_DROPDOWNLIST | WS_TABSTOP
+ CHECKBOX "Header and footer", OPT_HEADER, 16, 97, 90, 12, BS_AUTOCHECKBOX | WS_TABSTOP
+ CHECKBOX "Border around the page", OPT_BORDER, 16, 114, 90, 12, BS_AUTOCHECKBOX | WS_TABSTOP
+ GROUPBOX "Decoding", -1, 131, 6, 118, 51, BS_GROUPBOX | WS_GROUP
+ CHECKBOX "Autosave complete files", OPT_AUTOSAVE, 141, 20, 90, 12, BS_AUTOCHECKBOX | WS_TABSTOP
+ CHECKBOX "Determine best quality", OPT_HIQ, 141, 37, 90, 12, BS_AUTOCHECKBOX | WS_TABSTOP
+ GROUPBOX "Encryption", -1, 131, 64, 118, 51, BS_GROUPBOX | WS_GROUP
+ CHECKBOX "Encrypt data", OPT_ENCRYPT, 141, 78, 90, 12, BS_AUTOCHECKBOX | WS_TABSTOP
+ CHECKBOX "Password in open text", OPT_OPENTEXT, 141, 95, 90, 12, BS_AUTOCHECKBOX | WS_TABSTOP
+ DEFPUSHBUTTON "OK", OPT_OK, 131, 120, 56, 14
+ PUSHBUTTON "Cancel", OPT_CANCEL, 193, 120, 56, 14
+}
+
+DIALOG_CONFIRM DIALOG 32, 32, 194, 93
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU | DS_3DLOOK
+CAPTION "AES-256 data encryption"
+FONT 8, "MS Sans Serif"
+{
+ LTEXT "Data will be encrypted. Please enter password:", PAS_TEXT, 9, 6, 160, 9
+ EDITTEXT PAS_ENTER, 21, 19, 166, 14
+ LTEXT "Confirm password:", -1, 9, 39, 120, 9
+ EDITTEXT PAS_CONFIRM, 21, 52, 166, 14
+ DEFPUSHBUTTON "OK", PAS_OK, 70, 73, 56, 14
+ PUSHBUTTON "Cancel", PAS_CANCEL, 132, 73, 56, 14
+}
+
+DIALOG_PASSWORD DIALOG 32, 32, 194, 60
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU | DS_3DLOOK
+CAPTION "Data encrypted"
+FONT 8, "MS Sans Serif"
+{
+ LTEXT "Please enter password:", PAS_TEXT, 9, 6, 100, 9
+ EDITTEXT PAS_ENTER, 21, 19, 166, 14
+ DEFPUSHBUTTON "OK", PAS_OK, 70, 40, 56, 14
+ PUSHBUTTON "Cancel", PAS_CANCEL, 132, 40, 56, 14
+}
+
