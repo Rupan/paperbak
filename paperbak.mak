@@ -14,20 +14,20 @@ BCB = $(MAKEDIR)\..
 VERSION = BCB.05.03
 # ---------------------------------------------------------------------------
 PROJECT = PaperBak.exe
-OBJFILES = PaperBak.obj Main.obj Ecc.obj Crc16.obj Printer.obj Decoder.obj \
+OBJFILES = Main.obj Ecc.obj Crc16.obj Printer.obj Decoder.obj \
     Fileproc.obj Controls.obj Scanner.obj bzlib\bz_compress.obj \
     bzlib\bz_crctable.obj bzlib\bz_decompress.obj bzlib\bz_lib.obj \
     bzlib\bz_blocksort.obj bzlib\bz_huffman.obj bzlib\bz_randtable.obj \
     Service.obj aes\ae_aes.obj
 RESFILES = PaperBak.res Resource.res
-MAINSOURCE = PaperBak.cpp
+MAINSOURCE = Main.cpp
 RESDEPEN = $(RESFILES)
 LIBFILES = 
 IDLFILES = 
 IDLGENFILES = 
-LIBRARIES = Vcl50.lib
+LIBRARIES = 
 PACKAGES = 
-SPARELIBS = Vcl50.lib
+SPARELIBS = 
 DEFFILE = 
 # ---------------------------------------------------------------------------
 PATHCPP = .;bzlib;aes
@@ -50,9 +50,9 @@ RFLAGS =
 AFLAGS = /mx /m3 /w2 /zn
 LFLAGS = -D"" -aa -Tpe -x -Gn
 # ---------------------------------------------------------------------------
-ALLOBJ = c0w32.obj sysinit.obj $(OBJFILES)
+ALLOBJ = c0w32.obj $(OBJFILES)
 ALLRES = $(RESFILES)
-ALLLIB = $(LIBFILES) $(LIBRARIES) import32.lib cp32mt.lib
+ALLLIB = $(LIBFILES) $(LIBRARIES) import32.lib cw32mt.lib
 # ---------------------------------------------------------------------------
 !ifdef IDEOPTIONS
 
