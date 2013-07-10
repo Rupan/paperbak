@@ -31,8 +31,7 @@
 #include <windows.h>
 #include <commctrl.h>
 #include <stdio.h>
-#include <dir.h>
-#include <mem.h>
+#include <direct.h>
 #include <math.h>
 #include "twain.h"
 #include "bzlib\bzlib.h"

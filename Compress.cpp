@@ -1,5 +1,5 @@
 #include <windows.h>
-#include <dir.h>
+#include <direct.h>
 
 /* Author: David Bourgin, 1995 */
 

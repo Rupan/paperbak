@@ -43,7 +43,7 @@ LIBPATH = aes;bzlib;$(BCB)\lib\obj;$(BCB)\lib
 WARNINGS= -w-par
 # ---------------------------------------------------------------------------
 CFLAG1 = -O2 -H=$(BCB)\lib\vcl50.csm -Hc -w -Vx -Ve -C -ff -X- -a8 -b -d -k- -vi -c \
-    -tW -tWM
+    -tW -tWM -y -v
 IDLCFLAGS = 
 PFLAGS = -$Y- -$L- -$D- -v -JPHNE -M
 RFLAGS = 
