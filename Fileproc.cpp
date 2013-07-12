@@ -232,9 +232,9 @@ int Finishpage(int slot,int ngood,int nbad,ulong nrestored) {
   };
   // Check whether there are still bad blocks on the page.
   firstblock=(pf->page-1)*(pf->pagesize/NDATA);
-  for (j=firstblock; j<firstblock+pf->pagesize/NDATA && j<pf->nblock; j++) {
+  for (j=firstblock; j<firstblock+(int)(pf->pagesize/NDATA) && j<pf->nblock; j++) {
     if (pf->datavalid[j]!=1) break; };
-  if (j<firstblock+pf->pagesize/NDATA && j<pf->nblock)
+  if (j<firstblock+(int)(pf->pagesize/NDATA) && j<pf->nblock)
     Message("Unrecoverable errors on page, please scan it again",0);
   else if (nbad>0)
     Message("Page processed, all bad blocks successfully restored",0);
@@ -245,7 +245,7 @@ int Finishpage(int slot,int ngood,int nbad,ulong nrestored) {
   if (pf->pagesize>0) {
     for (i=0; i<pf->npages && nrempages<8; i++) {
       firstblock=i*(pf->pagesize/NDATA);
-      for (j=firstblock; j<firstblock+pf->pagesize/NDATA && j<pf->nblock; j++) {
+      for (j=firstblock; j<firstblock+(int)(pf->pagesize/NDATA) && j<pf->nblock; j++) {
         if (pf->datavalid[j]==1)
           continue;
         // Page incomplete.
