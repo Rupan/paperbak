@@ -12,6 +12,17 @@ The upstream source of this application is:
 
 A copy of the homepage is mirrored in this repository as upstream.html.
 
+bzip2
+===
+bzip2, a compression library, is used with this project.  Its source code can be downloaded here:
+
+http://www.bzip.org/downloads.html
+
+The library included in this repository, bzip2.lib, can be built as follows:
+
+bcc32 -Hc -w -Vx -Ve -C -ff -X- -a8 -b -d -k- -vi -y -v -c compress.c crctable.c decompress.c bzlib.c blocksort.c huffman.c randtable.c
+tlib bzip2.lib /C +compress+crctable+decompress+bzlib+blocksort+huffman+randtable
+
 Building
 ===
 

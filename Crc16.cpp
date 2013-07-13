@@ -34,7 +34,7 @@
 #include <direct.h>
 #include <math.h>
 #include "twain.h"
-#include "BZLIB/bzlib.h"
+#include "bzlib.h"
 #include "AES/AES.H"
 #pragma hdrstop
 

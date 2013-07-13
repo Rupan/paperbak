@@ -15,10 +15,7 @@ VERSION = BCB.05.03
 # ---------------------------------------------------------------------------
 PROJECT = PaperBak.exe
 OBJFILES = Main.obj Ecc.obj Crc16.obj Printer.obj Decoder.obj \
-    Fileproc.obj Controls.obj Scanner.obj bzlib\bz_compress.obj \
-    bzlib\bz_crctable.obj bzlib\bz_decompress.obj bzlib\bz_lib.obj \
-    bzlib\bz_blocksort.obj bzlib\bz_huffman.obj bzlib\bz_randtable.obj \
-    Service.obj aes\ae_aes.obj
+    Fileproc.obj Controls.obj Scanner.obj Service.obj aes\ae_aes.obj
 RESFILES = PaperBak.res Resource.res
 MAINSOURCE = Main.cpp
 RESDEPEN = $(RESFILES)
@@ -52,7 +49,7 @@ LFLAGS = -D"" -aa -Tpe -x -Gn
 # ---------------------------------------------------------------------------
 ALLOBJ = c0w32.obj $(OBJFILES)
 ALLRES = $(RESFILES)
-ALLLIB = $(LIBFILES) $(LIBRARIES) import32.lib cw32mt.lib
+ALLLIB = $(LIBFILES) $(LIBRARIES) bzip2.lib import32.lib cw32mt.lib
 # ---------------------------------------------------------------------------
 !ifdef IDEOPTIONS
 
