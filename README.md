@@ -23,6 +23,23 @@ The library included in this repository, bzip2.lib, can be built as follows:
 bcc32 -Hc -w -Vx -Ve -C -ff -X- -a8 -b -d -k- -vi -y -v -c compress.c crctable.c decompress.c bzlib.c blocksort.c huffman.c randtable.c
 tlib bzip2.lib /C +compress+crctable+decompress+bzlib+blocksort+huffman+randtable
 
+crypto
+===
+
+This directory contains Brian Gladman's AES and SHA code, including HMAC and key derivation routines.
+The sources were built as follows:
+
+in AES:
+First, edit aes_x86_v1.asm and add 'use32' to the .text section header (otherwise 16-bit code is generated).
+nasm -f obj -F borland aes_x86_v1.asm
+bcc32 -Hc -w -Vx -Ve -C -ff -X- -a8 -b -d -k- -vi -y -v -c -DASM_X86_V1C -DLITTLE_ENDIAN aeskey.c aestab.c
+
+in SHA:
+bcc32 -Hc -w -Vx -Ve -C -ff -X- -a8 -b -d -k- -vi -y -v -c -DLITTLE_ENDIAN -DUSE_SHA256 hmac.c pwd2key.c sha2.c
+
+then put them all into a library:
+tlib crypto.lib /C +aeskey+aestab+aes_x86_v1+hmac+pwd2key+sha2
+
 Building
 ===
 
