@@ -34,8 +34,6 @@
 #include <direct.h>
 #include <math.h>
 #include "twain.h"
-#include "bzlib.h"
-#include "AES/AES.H"
 #pragma hdrstop
 
 #define MAINPROG
