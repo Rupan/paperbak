@@ -27,7 +27,7 @@ PACKAGES =
 SPARELIBS = 
 DEFFILE = 
 # ---------------------------------------------------------------------------
-PATHCPP = .;bzlib;aes
+PATHCPP = .;bzlib;aes;crypto
 PATHASM = .;
 PATHPAS = .;
 PATHRC = .;
@@ -36,7 +36,7 @@ RELEASELIBPATH = $(BCB)\lib\release
 USERDEFINES = 
 SYSDEFINES = NO_STRICT
 INCLUDEPATH = aes;bzlib;$(BCB)\include;$(BCB)\include\vcl
-LIBPATH = aes;bzlib;$(BCB)\lib\obj;$(BCB)\lib
+LIBPATH = aes;bzlib;crypto;$(BCB)\lib\obj;$(BCB)\lib
 WARNINGS= -w-par
 # ---------------------------------------------------------------------------
 CFLAG1 = -O2 -H=$(BCB)\lib\vcl50.csm -Hc -w -Vx -Ve -C -ff -X- -a8 -b -d -k- -vi -c \
@@ -49,7 +49,7 @@ LFLAGS = -D"" -aa -Tpe -x -Gn
 # ---------------------------------------------------------------------------
 ALLOBJ = c0w32.obj $(OBJFILES)
 ALLRES = $(RESFILES)
-ALLLIB = $(LIBFILES) $(LIBRARIES) bzip2.lib import32.lib cw32mt.lib
+ALLLIB = $(LIBFILES) $(LIBRARIES) bzip2.lib crypto.lib import32.lib cw32mt.lib
 # ---------------------------------------------------------------------------
 !ifdef IDEOPTIONS
 

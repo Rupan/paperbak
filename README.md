@@ -32,7 +32,7 @@ The sources were built as follows:
 in AES:
 First, edit aes_x86_v1.asm and add 'use32' to the .text section header (otherwise 16-bit code is generated).
 nasm -f obj -F borland aes_x86_v1.asm
-bcc32 -Hc -w -Vx -Ve -C -ff -X- -a8 -b -d -k- -vi -y -v -c -DASM_X86_V1C -DLITTLE_ENDIAN aeskey.c aestab.c
+bcc32 -Hc -w -Vx -Ve -C -ff -X- -a8 -b -d -k- -vi -y -v -c -DASM_X86_V1C -DLITTLE_ENDIAN aeskey.c aestab.c aes_modes.c
 
 in SHA:
 bcc32 -Hc -w -Vx -Ve -C -ff -X- -a8 -b -d -k- -vi -y -v -c -DLITTLE_ENDIAN -DUSE_SHA256 hmac.c pwd2key.c sha2.c
