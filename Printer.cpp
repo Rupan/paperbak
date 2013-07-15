@@ -34,7 +34,8 @@
 #include <direct.h>
 #include <math.h>
 #include "twain.h"
-#include "AES/AES.H"
+#include "CRYPTO/aes.h"
+#include "CRYPTO/pwd2key.h"
 #pragma hdrstop
 
 #include "paperbak.h"
@@ -427,12 +428,24 @@ static void Finishcompression(t_printdata *print) {
   print->step++;
 };
 
+BOOL WINAPI GenerateRandomData(DWORD dwLen, BYTE *pbBuffer) {
+  BOOL result = TRUE;
+  HCRYPTPROV hProv;
+
+  if(!CryptAcquireContext(&hProv, NULL, NULL, PROV_RSA_FULL, CRYPT_VERIFYCONTEXT))
+    return FALSE;
+  if(!CryptGenRandom(hProv, dwLen, pbBuffer))
+    result = FALSE;
+  CryptReleaseContext(hProv, 0);
+  return result;
+}
+
 // Encrypts data. I ask to enter password individually for each file. AES-256
 // encryption is very fast, so we don't need to split it into several steps.
 static void Encryptdata(t_printdata *print) {
   int n;
-  ulong l;
-  aes_context ctx;
+  aes_encrypt_ctx ctx[1];
+  uchar key[32], iv[16];
   // Calculate 16-bit CRC of possibly compressed but unencrypted data. I use
   // it to verify data after decryption: the safe way to assure that password
   // is entered correctly.
@@ -455,13 +468,25 @@ static void Encryptdata(t_printdata *print) {
   // Encryption routine expects that password is exactly PASSLEN bytes long.
   // Fill rest of the password with zeros.
   n=strlen(password);
-  while (n<PASSLEN) password[n++]=0;
+  if(!GenerateRandomData(sizeof(print->salt), print->salt)) {
+    Message("Unable to get a random password salt...",0);
+    Stopprinting(print);
+    return; };
+  derive_key((const uchar *)password, n, print->salt, sizeof(print->salt), 1048576, key, 32);
   // Initialize encryption.
   memset(&ctx,0,sizeof(ctx));
-  aes_set_key(&ctx,(uchar *)password,256);
+  aes_encrypt_key256(key, ctx);
+  memset(key,0,sizeof(key));
   // Encrypt data. AES works with 16-byte data chunks.
-  for (l=0; l<print->alignedsize; l+=16)
-    aes_encrypt(&ctx,print->buf+l,print->buf+l);
+  if(!GenerateRandomData(sizeof(iv), iv)) {
+    Message("Unable to get a random IV...",0);
+    Stopprinting(print);
+    return; };
+  memcpy(print->iv, iv, sizeof(iv)); // The IV is updated during encryption
+  if(aes_cbc_encrypt(print->buf, print->buf, print->alignedsize, iv, ctx) == EXIT_FAILURE) {
+    Message("Unable to encrypt data...",0);
+    Stopprinting(print);
+    return; };
   // Clear password and encryption control block. We no longer need them.
   memset(password,0,sizeof(password));
   memset(&ctx,0,sizeof(ctx));
@@ -496,6 +521,9 @@ static void Initializeprinting(t_printdata *print) {
   fnmerge(fil,NULL,NULL,nam,ext);
   // Note that name in superdata may be not null-terminated.
   strncpy(print->superdata.name,fil,sizeof(print->superdata.name));
+  // save the IV and salt for decryption later
+  memcpy(print->superdata.iv, print->iv, sizeof(print->superdata.iv));
+  memcpy(print->superdata.salt, print->salt, sizeof(print->superdata.salt));
   // If printing to paper, ask user to select printer and, if necessary, adjust
   // parameters. I do not enforce high quality or high resolution - the user is
   // the king (well, a sort of).

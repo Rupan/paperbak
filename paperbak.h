@@ -78,7 +78,9 @@ typedef struct t_superdata {           // Identification block on paper
   ushort         page;                 // Actual page (1-based)
   FILETIME       modified;             // Time of last file modification
   ushort         filecrc;              // CRC of compressed decrypted file
-  char           name[64];             // File name - may have all 64 chars
+  char           name[32];             // File name - may have all 32 chars
+  uchar          iv[16];               // encryption - initialization vector
+  uchar          salt[16];             // encryption - password salt
   ushort         crc;                  // Cyclic redundancy of previous fields
   uchar          ecc[32];              // Reed-Solomon's error correction code
 } t_superdata;
@@ -103,7 +105,9 @@ typedef struct t_superblock {          // Identification block in memory
   FILETIME       modified;             // Time of last file modification
   ulong          attributes;           // Basic file attributes
   ulong          filecrc;              // 16-bit CRC of decrypted packed file
-  char           name[64];             // File name - may have all 64 chars
+  char           name[32];             // File name - may have all 32 chars
+  uchar          iv[16];               // ?? encryption - initialization vector
+  uchar          salt[16];             // ?? encryption - password salt
   int            ngroup;               // Actual NGROUP on the page
 } t_superblock;
 
@@ -140,6 +144,8 @@ typedef struct t_printdata {           // Print control structure
   ulong          pagesize;             // Size of (compressed) data on page
   int            compression;          // 0: none, 1: fast, 2: maximal
   int            encryption;           // 0: none, 1: encrypt
+  uchar          iv[16];               // the initialization vector
+  uchar          salt[16];             // the password salt
   int            printheader;          // Print header and footer
   int            printborder;          // Print border around bitmap
   int            redundancy;           // Redundancy
