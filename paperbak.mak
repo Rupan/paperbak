@@ -15,7 +15,7 @@ VERSION = BCB.05.03
 # ---------------------------------------------------------------------------
 PROJECT = PaperBak.exe
 OBJFILES = Main.obj Ecc.obj Crc16.obj Printer.obj Decoder.obj \
-    Fileproc.obj Controls.obj Scanner.obj Service.obj aes\ae_aes.obj
+    Fileproc.obj Controls.obj Scanner.obj Service.obj
 RESFILES = PaperBak.res Resource.res
 MAINSOURCE = Main.cpp
 RESDEPEN = $(RESFILES)
