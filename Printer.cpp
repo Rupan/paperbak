@@ -35,6 +35,7 @@
 #include <math.h>
 #include "twain.h"
 #include "CRYPTO/aes.h"
+#include "CRYPTO/pwd2key.h"
 #pragma hdrstop
 
 #include "paperbak.h"
@@ -427,10 +428,24 @@ static void Finishcompression(t_printdata *print) {
   print->step++;
 };
 
+// Writes (presumably) random data into the specified buffer
+BOOL WINAPI GenerateRandomData(DWORD dwLen, BYTE *pbBuffer) {
+  BOOL result = TRUE;
+  HCRYPTPROV hProv;
+
+  if(!CryptAcquireContext(&hProv, NULL, NULL, PROV_RSA_FULL, CRYPT_VERIFYCONTEXT))
+    return FALSE;
+  if(!CryptGenRandom(hProv, dwLen, pbBuffer))
+    result = FALSE;
+  CryptReleaseContext(hProv, 0);
+  return result;
+}
+
 // Encrypts data. I ask to enter password individually for each file. AES-256
 // encryption is very fast, so we don't need to split it into several steps.
 static void Encryptdata(t_printdata *print) {
   int n;
+  uchar *salt, key[32];
   aes_encrypt_ctx ctx[1];
   // Calculate 16-bit CRC of possibly compressed but unencrypted data. I use
   // it to verify data after decryption: the safe way to assure that password
@@ -454,20 +469,28 @@ static void Encryptdata(t_printdata *print) {
   // Encryption routine expects that password is exactly PASSLEN bytes long.
   // Fill rest of the password with zeros.
   n=strlen(password);
-  while (n<PASSLEN) password[n++]=0;
+  salt=(uchar *)(print->superdata.name)+48; // hack: put the salt at the end of the name field
+  if(GenerateRandomData(16, salt) == FALSE) {
+    Message("Failed to generate salt",0);
+    Stopprinting(print);
+    return; };
+  derive_key((const uchar *)password, n, salt, 16, 524288, key, 32);
+  memset(password,0,sizeof(password));
   // Initialize encryption.
   memset(ctx,0,sizeof(aes_encrypt_ctx));
-  if(aes_encrypt_key256((const uchar *)password, ctx) == EXIT_FAILURE) {
+  if(aes_encrypt_key256((const uchar *)key, ctx) == EXIT_FAILURE) {
+    memset(key,0,32);
     Message("Failed to set encryption key",0);
     Stopprinting(print);
     return; };
+  memset(key,0,32);
   // Encrypt data. AES works with 16-byte data chunks.
   if(aes_ecb_encrypt(print->buf, print->buf, print->alignedsize, ctx) == EXIT_FAILURE) {
+    memset(ctx,0,sizeof(aes_encrypt_ctx));
     Message("Failed to encrypt data",0);
     Stopprinting(print);
     return; };
   // Clear password and encryption control block. We no longer need them.
-  memset(password,0,sizeof(password));
   memset(ctx,0,sizeof(aes_encrypt_ctx));
   // Step finished.
   print->step++;
