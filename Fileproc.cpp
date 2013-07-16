@@ -34,7 +34,7 @@
 #include <direct.h>
 #include <math.h>
 #include "twain.h"
-#include "AES/AES.H"
+#include "CRYPTO/aes.h"
 #pragma hdrstop
 
 #include "paperbak.h"
@@ -276,7 +276,7 @@ int Saverestoredfile(int slot,int force) {
   ulong l,length;
   uchar *bufout,*data,*tempdata;
   t_fproc *pf;
-  aes_context ctx;
+  aes_decrypt_ctx ctx[1];
   HANDLE hfile;
   if (slot<0 || slot>=NFILE)
     return -1;                         // Invalid index of file descriptor
@@ -300,10 +300,17 @@ int Saverestoredfile(int slot,int force) {
       return -1; };
     n=strlen(password);
     while (n<PASSLEN) password[n++]=0;
-    memset(&ctx,0,sizeof(ctx));
-    aes_set_key(&ctx,(uchar *)password,256);
-    for (l=0; l<pf->datasize; l+=16)
-      aes_decrypt(&ctx,pf->data+l,tempdata+l);
+    memset(ctx,0,sizeof(aes_decrypt_ctx));
+    if(aes_decrypt_key256((const uchar *)password,ctx) == EXIT_FAILURE) {
+      Reporterror("Failed to set decryption key");
+      memset(password,0,sizeof(password));
+      return -1; };
+    memset(password,0,sizeof(password));
+    if(aes_ecb_decrypt(pf->data,tempdata,pf->datasize,ctx) == EXIT_FAILURE) {
+      Reporterror("Failed to decrypt data");
+      memset(ctx,0,sizeof(aes_decrypt_ctx));
+      return -1; };
+    memset(ctx,0,sizeof(aes_decrypt_ctx));
     filecrc=Crc16(tempdata,pf->datasize);
     if (filecrc!=pf->filecrc) {
       Reporterror("Invalid password, please try again");

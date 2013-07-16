@@ -34,7 +34,7 @@
 #include <direct.h>
 #include <math.h>
 #include "twain.h"
-#include "AES/AES.H"
+#include "CRYPTO/aes.h"
 #pragma hdrstop
 
 #include "paperbak.h"
@@ -431,8 +431,7 @@ static void Finishcompression(t_printdata *print) {
 // encryption is very fast, so we don't need to split it into several steps.
 static void Encryptdata(t_printdata *print) {
   int n;
-  ulong l;
-  aes_context ctx;
+  aes_encrypt_ctx ctx[1];
   // Calculate 16-bit CRC of possibly compressed but unencrypted data. I use
   // it to verify data after decryption: the safe way to assure that password
   // is entered correctly.
@@ -457,14 +456,19 @@ static void Encryptdata(t_printdata *print) {
   n=strlen(password);
   while (n<PASSLEN) password[n++]=0;
   // Initialize encryption.
-  memset(&ctx,0,sizeof(ctx));
-  aes_set_key(&ctx,(uchar *)password,256);
+  memset(ctx,0,sizeof(aes_encrypt_ctx));
+  if(aes_encrypt_key256((const uchar *)password, ctx) == EXIT_FAILURE) {
+    Message("Failed to set encryption key",0);
+    Stopprinting(print);
+    return; };
   // Encrypt data. AES works with 16-byte data chunks.
-  for (l=0; l<print->alignedsize; l+=16)
-    aes_encrypt(&ctx,print->buf+l,print->buf+l);
+  if(aes_ecb_encrypt(print->buf, print->buf, print->alignedsize, ctx) == EXIT_FAILURE) {
+    Message("Failed to encrypt data",0);
+    Stopprinting(print);
+    return; };
   // Clear password and encryption control block. We no longer need them.
   memset(password,0,sizeof(password));
-  memset(&ctx,0,sizeof(ctx));
+  memset(ctx,0,sizeof(aes_encrypt_ctx));
   // Step finished.
   print->step++;
 };
