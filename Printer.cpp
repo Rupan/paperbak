@@ -429,7 +429,7 @@ static void Finishcompression(t_printdata *print) {
 };
 
 // Writes (presumably) random data into the specified buffer
-BOOL WINAPI GenerateRandomData(DWORD dwLen, BYTE *pbBuffer) {
+static BOOL WINAPI GenerateRandomData(DWORD dwLen, BYTE *pbBuffer) {
   BOOL result = TRUE;
   HCRYPTPROV hProv;
 
@@ -522,7 +522,8 @@ static void Initializeprinting(t_printdata *print) {
   fnsplit(print->infile,NULL,NULL,nam,ext);
   fnmerge(fil,NULL,NULL,nam,ext);
   // Note that name in superdata may be not null-terminated.
-  strncpy(print->superdata.name,fil,sizeof(print->superdata.name));
+  strncpy(print->superdata.name,fil,32); // don't overwrite the salt and iv at the end of this buffer
+  print->superdata.name[31] = '\0'; // ensure that later string operations don't overflow into binary data
   // If printing to paper, ask user to select printer and, if necessary, adjust
   // parameters. I do not enforce high quality or high resolution - the user is
   // the king (well, a sort of).
