@@ -1,10 +1,10 @@
 PaperBack
 ===
 
-This project is an attempt to:
+This goal of this project is to:
 
 1) document the process by which Paperbak is built
-2) port the application to another compiler (VC++) and/or OS (Linux)
+2) fix its crypto implementation
 
 The upstream source of this application is:
 
@@ -29,16 +29,16 @@ crypto
 This directory contains Brian Gladman's AES and SHA code, including HMAC and key derivation routines.
 The sources were built as follows:
 
-in AES:
+in AES (from https://github.com/Rupan/aes):
 First, edit aes_x86_v1.asm and add 'use32' to the .text section header (otherwise 16-bit code is generated).
 nasm -f obj -F borland aes_x86_v1.asm
 bcc32 -Hc -w -Vx -Ve -C -ff -X- -a8 -b -d -k- -vi -y -v -c -DASM_X86_V1C -DLITTLE_ENDIAN aeskey.c aestab.c aes_modes.c
 
-in SHA:
+in SHA (from https://github.com/Rupan/sha):
 bcc32 -Hc -w -Vx -Ve -C -ff -X- -a8 -b -d -k- -vi -y -v -c -DLITTLE_ENDIAN -DUSE_SHA256 hmac.c pwd2key.c sha2.c
 
 then put them all into a library:
-tlib crypto.lib /C +aeskey+aestab+aes_x86_v1+hmac+pwd2key+sha2
+tlib crypto.lib /C +aeskey+aestab+aes_x86_v1+hmac+pwd2key+sha2+aes_modes
 
 Building
 ===
@@ -57,3 +57,10 @@ Now prepend the path C:\Borland\BCC55\Bin
 5) Place this source code in a path without spaces (i.e. C:\paperbak), then build it:
 
 make -f paperbak.mak
+
+Changelog
+===
+
+1.00 - First public release
+1.10 - Fix crypto implementation
+       Switch to precompiled libraries

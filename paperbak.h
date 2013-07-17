@@ -24,7 +24,7 @@
 #endif
 
 #define VERSIONHI      1               // Major version
-#define VERSIONLO      0               // Minor version
+#define VERSIONLO      1               // Minor version
 
 #define MAINDX         800             // Max width of the main window, pixels
 #define MAINDY         600             // Max height of the main window, pixels
