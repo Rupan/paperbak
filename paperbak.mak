@@ -45,7 +45,7 @@ IDLCFLAGS =
 PFLAGS = -$Y- -$L- -$D- -v -JPHNE -M
 RFLAGS = 
 AFLAGS = /mx /m3 /w2 /zn
-LFLAGS = -D"" -aa -Tpe -x -Gn
+LFLAGS = -D"" -aa -Tpe -x -Gn -v
 # ---------------------------------------------------------------------------
 ALLOBJ = c0w32.obj $(OBJFILES)
 ALLRES = $(RESFILES)
