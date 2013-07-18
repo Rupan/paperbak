@@ -76,16 +76,17 @@ int CALLBACK Aboutdlgproc(HWND hw,UINT msg,WPARAM wp,LPARAM lp) {
   switch (msg) {
     case WM_INITDIALOG:
       sprintf(s,"\nPaperBack v%i.%02i\n"
-        "Copyright © 2007 Oleh Yuschuk\n\n"
+        "Copyright © 2007 Oleh Yuschuk\n"
+        "Parts copyright © 2013 Michael Mohr\n\n"
         "----- THIS SOFTWARE IS FREE -----\n"
         "Released under GNU Public License (GPL 3+)\n"
         "Full sources available\n\n"
         "Reed-Solomon ECC:\n"
         "Copyright © 2002 Phil Karn (GPL)\n\n"
         "Bzip2 data compression:\n"
-        "Copyright © 1996-2005 Julian R. Seward (see sources)\n\n"
-        "FIPS-197 compliant AES encryption:\n"
-        "Copyright © 2001-2004 Christophe Devine (GPL 2+)",
+        "Copyright © 1996-2010 Julian R. Seward (see sources)\n\n"
+        "AES and SHA code:\n"
+        "Copyright © 1998-2010, Brian Gladman (3-clause BSD)",
         VERSIONHI,VERSIONLO);
       SetDlgItemText(hw,ABOUT_TEXT,s);
       return TRUE;

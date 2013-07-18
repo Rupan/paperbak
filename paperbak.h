@@ -24,13 +24,15 @@
 #endif
 
 #define VERSIONHI      1               // Major version
-#define VERSIONLO      1               // Minor version
+#define VERSIONLO      10              // Minor version
 
 #define MAINDX         800             // Max width of the main window, pixels
 #define MAINDY         600             // Max height of the main window, pixels
 
 #define TEXTLEN        256             // Maximal length of strings
 #define PASSLEN        33              // Maximal length of password, incl. 0
+
+#define AESKEYLEN      24              // AES key length in bytes (16, 24, or 32)
 
 typedef unsigned char  uchar;
 typedef unsigned short ushort;

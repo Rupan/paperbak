@@ -162,7 +162,7 @@ FONT 8, "MS Sans Serif"
 
 DIALOG_CONFIRM DIALOG 32, 32, 194, 93
 STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU | DS_3DLOOK
-CAPTION "AES-256 data encryption"
+CAPTION "AES data encryption"
 FONT 8, "MS Sans Serif"
 {
  LTEXT "Data will be encrypted. Please enter password:", PAS_TEXT, 9, 6, 160, 9

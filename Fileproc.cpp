@@ -275,7 +275,7 @@ int Saverestoredfile(int slot,int force) {
   int n,success;
   ushort filecrc;
   ulong l,length;
-  uchar *bufout,*data,*tempdata,*salt,key[32],iv[16];
+  uchar *bufout,*data,*tempdata,*salt,key[AESKEYLEN],iv[16];
   t_fproc *pf;
   aes_decrypt_ctx ctx[1];
   HANDLE hfile;
@@ -301,14 +301,14 @@ int Saverestoredfile(int slot,int force) {
       return -1; };
     n=strlen(password);
     salt=(uchar *)(pf->name)+32; // hack: put the salt & iv at the end of the name field
-    derive_key((const uchar *)password, n, salt, 16, 524288, key, 32);
+    derive_key((const uchar *)password, n, salt, 16, 524288, key, AESKEYLEN);
     memset(password,0,sizeof(password));
     memset(ctx,0,sizeof(aes_decrypt_ctx));
-    if(aes_decrypt_key256((const uchar *)key,ctx) == EXIT_FAILURE) {
-      memset(key,0,32);
+    if(aes_decrypt_key((const uchar *)key,AESKEYLEN,ctx) == EXIT_FAILURE) {
+      memset(key,0,AESKEYLEN);
       Reporterror("Failed to set decryption key");
       return -1; };
-    memset(key,0,32);
+    memset(key,0,AESKEYLEN);
     memcpy(iv, salt+16, 16); // the second 16-byte block in 'salt' is the IV
     if(aes_cbc_decrypt(pf->data,tempdata,pf->datasize,iv,ctx) == EXIT_FAILURE) {
       Reporterror("Failed to decrypt data");

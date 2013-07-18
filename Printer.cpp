@@ -445,7 +445,7 @@ static BOOL WINAPI GenerateRandomData(DWORD dwLen, BYTE *pbBuffer) {
 // encryption is very fast, so we don't need to split it into several steps.
 static void Encryptdata(t_printdata *print) {
   int n;
-  uchar *salt,key[32],iv[16];
+  uchar *salt,key[AESKEYLEN],iv[16];
   aes_encrypt_ctx ctx[1];
   // Calculate 16-bit CRC of possibly compressed but unencrypted data. I use
   // it to verify data after decryption: the safe way to assure that password
@@ -474,16 +474,16 @@ static void Encryptdata(t_printdata *print) {
     Message("Failed to generate salt/iv",0);
     Stopprinting(print);
     return; };
-  derive_key((const uchar *)password, n, salt, 16, 524288, key, 32);
+  derive_key((const uchar *)password, n, salt, 16, 524288, key, AESKEYLEN);
   memset(password,0,sizeof(password));
   // Initialize encryption.
   memset(ctx,0,sizeof(aes_encrypt_ctx));
-  if(aes_encrypt_key256((const uchar *)key, ctx) == EXIT_FAILURE) {
-    memset(key,0,32);
+  if(aes_encrypt_key((const uchar *)key, AESKEYLEN, ctx) == EXIT_FAILURE) {
+    memset(key,0,AESKEYLEN);
     Message("Failed to set encryption key",0);
     Stopprinting(print);
     return; };
-  memset(key,0,32);
+  memset(key,0,AESKEYLEN);
   // Encrypt data. AES works with 16-byte data chunks.
   memcpy(iv, salt+16, 16); // the second 16-byte block in 'salt' is the IV
   if(aes_cbc_encrypt(print->buf, print->buf, print->alignedsize, iv, ctx) == EXIT_FAILURE) {
